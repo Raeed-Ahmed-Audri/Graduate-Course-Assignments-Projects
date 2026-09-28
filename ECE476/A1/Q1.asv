@@ -1,0 +1,79 @@
+a  = 1.07e-2;
+c  = 3e8;
+Fc_10 = c/(2*a);
+wc_10 = 2*pi*Fc_10;
+
+f_10 = linspace(Fc_10, 30e9, 1000);
+w_10 = 2*pi*f_10;
+B_10 = sqrt(max((w_10/c).^2 - (pi/a)^2, 0));
+
+f_light = linspace(0, 30e9,1000);
+w_light = 2*pi*f_light;
+B_light = w_light/c;
+
+
+figure
+plot(w_10, B_10, 'b', 'LineWidth', 1.5)
+hold on
+plot(w_light, B_light, 'k--')
+
+lbl = sprintf('TE_{10} cutoff (%.2f GHz)', Fc_10/1e9);
+
+xline(wc_10, 'r:', lbl, 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'left', 'LabelVerticalAlignment', 'bottom', ...
+      'LabelOrientation', 'horizontal')
+xline(2*pi*18e9, 'g--', 'K-band start (18 GHz)', 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'right', 'LabelVerticalAlignment', 'middle', ...
+      'LabelOrientation', 'horizontal')
+xline(2*pi*27e9, 'g--', 'K-band end (27 GHz)', 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'left', 'LabelVerticalAlignment', 'middle', ...
+      'LabelOrientation', 'horizontal')
+
+xlim([0 2*pi*30e9])
+yl = ylim;
+text(wc_10/2, yl(2)*0.05, {'Cutoff region', '(no propagation)'}, 'HorizontalAlignment', 'center')
+
+xlabel('\omega (rad/s)')
+ylabel('\beta (rad/m)')
+title('TE_{10} dispersion')
+legend('TE_{10}', 'TEM', 'Location', 'southeast')
+hold off
+
+%% TE20
+Fc_20 = c/(a);
+wc_10 = 2*pi*Fc_20;
+
+f_10 = linspace(Fc_20, 30e9, 1000);
+w_10 = 2*pi*f_10;
+B_10 = sqrt(max((w_10/c).^2 - (pi/a)^2, 0));
+
+f_light = linspace(0, 30e9,1000);
+w_light = 2*pi*f_light;
+B_light = w_light/c;
+
+figure
+plot(w_10, B_10, 'b', 'LineWidth', 1.5)
+hold on
+plot(w_light, B_light, 'k--')
+
+lbl = sprintf('TE_{10} cutoff (%.2f GHz)', Fc_10/1e9);
+
+xline(wc_10, 'r:', lbl, 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'left', 'LabelVerticalAlignment', 'bottom', ...
+      'LabelOrientation', 'horizontal')
+xline(2*pi*18e9, 'g--', 'K-band start (18 GHz)', 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'right', 'LabelVerticalAlignment', 'middle', ...
+      'LabelOrientation', 'horizontal')
+xline(2*pi*27e9, 'g--', 'K-band end (27 GHz)', 'LineWidth', 1.2, ...
+      'LabelHorizontalAlignment', 'left', 'LabelVerticalAlignment', 'middle', ...
+      'LabelOrientation', 'horizontal')
+
+xlim([0 2*pi*30e9])
+yl = ylim;
+text(wc_10/2, yl(2)*0.05, {'Cutoff region', '(no propagation)'}, 'HorizontalAlignment', 'center')
+
+xlabel('\omega (rad/s)')
+ylabel('\beta (rad/m)')
+title('TE_{10} dispersion')
+legend('TE_{10}', 'TEM', 'Location', 'southeast')
+hold off
